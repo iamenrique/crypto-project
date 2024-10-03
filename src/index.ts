@@ -2,7 +2,7 @@ import yargs from "yargs";
 import prng from "./prng";
 import cipher from "./cipher";
 import decipher from "./decipher";
-import { scrypt } from "crypto";
+import { scryptSync } from "crypto";
 import hash from "./hash";
 import hmac from "./hmac";
 import diffieHellman from "./diffie-hellman";
@@ -136,7 +136,7 @@ const { argv } = yargs
     command: "scrypt",
     describe: "Generate a key from a password and salt",
     handler: ({ password, salt, size, encoding }) =>
-      console.log(scrypt(password, salt, size, encoding)),
+      console.log(scryptSync(password, salt, size).toString(encoding)),
     builder: {
       password: {
         alias: "p",
